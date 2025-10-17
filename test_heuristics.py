@@ -1,4 +1,3 @@
-# tests/test_heuristics.py
 from heuristics import score_url
 
 def test_ip_host():
@@ -12,3 +11,4 @@ def test_shortener():
 def test_benign():
     r = score_url('https://example.com/about')
     assert r['verdict'] == 'allow' or r['score'] < 25
+
