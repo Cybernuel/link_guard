@@ -18,11 +18,9 @@ def check_url():
     if not url:
         return jsonify({'error': 'URL required'}), 400
 
-    # Run checks
     heuristic = analyze_url_heuristics(url)
     vt_result = check_virustotal(url, VT_API_KEY) if VT_API_KEY else None
 
-    # Combine results
     suspicious = heuristic['suspicious']
     reasons = heuristic['reasons']
     score = heuristic['score']
@@ -41,4 +39,5 @@ def check_url():
 
 
 if __name__ == '__main__':
+
     app.run(host='0.0.0.0', port=5000, debug=True)
