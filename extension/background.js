@@ -1,7 +1,5 @@
-// LinkGuard Background Script
 console.log('LinkGuard: Background script loaded');
 
-// Listen for messages from content script
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === 'updateBadge') {
     updateBadge(sender.tab.id, request.count);
@@ -26,7 +24,6 @@ function updateBadge(tabId, count) {
   }
 }
 
-// Clear badge when tab is updated
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   if (changeInfo.status === 'loading') {
     chrome.action.setBadgeText({
@@ -34,4 +31,5 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
       tabId: tabId
     });
   }
+
 });
