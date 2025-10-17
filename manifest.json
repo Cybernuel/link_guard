@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "LinkGuard",
+  "version": "1.0.0",
+  "description": "Scans URLs for suspicious activity",
+  "permissions": ["activeTab"],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
