@@ -14,27 +14,22 @@ def analyze_url_heuristics(url):
         parsed = urlparse(url)
         domain = parsed.netloc.lower()
 
-        # Check URL shortener
         if any(s in domain for s in URL_SHORTENERS):
             reasons.append("URL shortener detected")
             score += 25
 
-        # Check suspicious TLD
         if any(domain.endswith(tld) for tld in SUSPICIOUS_TLDS):
             reasons.append("Suspicious domain extension")
             score += 20
 
-        # Check for IP address
         if re.match(r'^(\d{1,3}\.){3}\d{1,3}', domain.split(':')[0]):
             reasons.append("Uses IP address instead of domain")
             score += 30
 
-        # Check phishing keywords
         if any(kw in url.lower() for kw in PHISHING_KEYWORDS):
             reasons.append("Contains phishing-related keywords")
             score += 20
 
-        # Check URL length
         if len(url) > 200:
             reasons.append("Unusually long URL")
             score += 10
@@ -45,4 +40,5 @@ def analyze_url_heuristics(url):
             'score': score
         }
     except:
+
         return {'suspicious': False, 'reasons': [], 'score': 0}
