@@ -1,4 +1,3 @@
-// LinkGuard Content Script - Scans links on page
 console.log('LinkGuard: Content script loaded');
 
 const API_URL = 'http://localhost:5000/api/check-url';
@@ -133,4 +132,5 @@ const observer = new MutationObserver(() => {
 observer.observe(document.body, {
   childList: true,
   subtree: true
+
 });
